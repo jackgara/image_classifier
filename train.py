@@ -31,7 +31,7 @@ parser.add_argument('-e', '--epochs ', action='store',  type=int, dest='epochs',
 parser.add_argument('-hu', '--hidden_units ', action='store', type=int, dest='hidden_units',
                     help='Number of Hidden Units')
 
-parser.add_argument('-g', '--gpu ', action='store_false', default='True', dest='gpu',
+parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
                     help='Use GPU device')
 
 parser.add_argument('--version', action='version',

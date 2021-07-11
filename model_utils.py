@@ -19,7 +19,6 @@ set device
 
 
 def set_device(gpu):
-    #TODO ver porque devuelve cuda con gpu False
     return torch.device(
         "cuda" if (gpu and torch.cuda.is_available()) else "cpu")
 

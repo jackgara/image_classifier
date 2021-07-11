@@ -30,7 +30,7 @@ parser.add_argument('-k', '--top_k', action='store', type=int, dest='top_k',
 parser.add_argument('-c', '--category_names ', action='store', type=str, dest='category_names',
                     help='Dictionary of Category Id to Name')
 
-parser.add_argument('-g', '--gpu ', action='store_false', default='True', dest='gpu',
+parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
                     help='Use GPU for Inference')
 
 
