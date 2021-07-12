@@ -4,41 +4,48 @@ from config import *
 from data_utils import load_data
 from model_utils import init, setup, train, save_checkpoint
 
-parser = argparse.ArgumentParser(
-    description='Train a new network on a data set'
-)
 
-# required argument
+def argument_parser():
+    parser = argparse.ArgumentParser(
+        description='Train a new network on a data set'
+    )
 
-parser.add_argument('data_directory', action='store',
-                    type=str,
-                    help='Image Data Directory to train')
+    # required argument
 
-# optionals
+    parser.add_argument('data_directory', action='store',
+                        type=str,
+                        help='Image Data Directory to train')
 
-parser.add_argument('-s', '--save_dir', action='store', type=str, dest='save_directory',
-                    help='Directory to save Checkpoints')
+    # optionals
 
-parser.add_argument('-a', '--arch ', choices=['vgg19', 'vgg16'], action='store',  type=str, dest='arch', default='vgg19',
-                    help='Architecture')
+    parser.add_argument('-s', '--save_dir', action='store', type=str, dest='save_directory',
+                        help='Directory to save Checkpoints')
 
-parser.add_argument('-l', '--learning_rate ', action='store', type=float, dest='learning_rate',
-                    help='Learning Rate')
+    parser.add_argument('-a', '--arch ', choices=['vgg19', 'vgg16'], action='store',  type=str, dest='arch', default='vgg19',
+                        help='Architecture')
 
-parser.add_argument('-e', '--epochs ', action='store',  type=int, dest='epochs',
-                    help='Epochs')
+    parser.add_argument('-l', '--learning_rate ', action='store', type=float, dest='learning_rate',
+                        help='Learning Rate')
 
-parser.add_argument('-hu', '--hidden_units ', action='store', type=int, dest='hidden_units',
-                    help='Number of Hidden Units')
+    parser.add_argument('-e', '--epochs ', action='store',  type=int, dest='epochs',
+                        help='Epochs')
 
-parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
-                    help='Use GPU device')
+    parser.add_argument('-hu', '--hidden_units ', action='store', type=int, dest='hidden_units',
+                        help='Number of Hidden Units')
 
-parser.add_argument('--version', action='version',
-                    version='%(prog)s 1.0')
+    parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
+                        help='Use GPU device')
+
+    parser.set_defaults(gpu=False)
 
 
-args = parser.parse_args()
+    parser.add_argument('--version', action='version',
+                        version='%(prog)s 1.0')
+
+
+    return parser.parse_args()
+
+args = argument_parser()
 
 '''
 Train a new network on a dataset and save the model as a checkpoint

@@ -8,38 +8,41 @@ from data_utils import swap
 '''
 Parser
 '''
-parser = argparse.ArgumentParser(
-    description='Predict flower name from an image along with the probability of that name'
-)
 
-# required argument
+def argument_parser():
+    parser = argparse.ArgumentParser(
+        description='Predict flower name from an image along with the probability of that name'
+    )
 
-parser.add_argument('image_path', action='store',
-                    type=str,
-                    help='Path to image to predict')
+    # required argument
 
-parser.add_argument('checkpoint', action='store',
-                    type=str,
-                    help='Checkpoint to use')
+    parser.add_argument('image_path', action='store',
+                        type=str,
+                        help='Path to image to predict')
 
-# optionals
+    parser.add_argument('checkpoint', action='store',
+                        type=str,
+                        help='Checkpoint to use')
 
-parser.add_argument('-k', '--top_k', action='store', type=int, dest='top_k',
-                    help='Top K classes to return')
+    # optionals
 
-parser.add_argument('-c', '--category_names ', action='store', type=str, dest='category_names',
-                    help='Dictionary of Category Id to Name')
+    parser.add_argument('-k', '--top_k', action='store', type=int, dest='top_k',
+                        help='Top K classes to return')
 
-parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
-                    help='Use GPU for Inference')
+    parser.add_argument('-c', '--category_names ', action='store', type=str, dest='category_names',
+                        help='Dictionary of Category Id to Name')
 
-
-parser.add_argument('--version', action='version',
-                    version='%(prog)s 1.0')
+    parser.add_argument('-g', '--gpu ', action='store_true', default='False', dest='gpu',
+                        help='Use GPU for Inference')
 
 
-args = parser.parse_args()
+    parser.add_argument('--version', action='version',
+                        version='%(prog)s 1.0')
 
+
+    return parser.parse_args()
+
+args = argument_parser()
 
 '''
  Uses a trained network to predict the class for an input image.
